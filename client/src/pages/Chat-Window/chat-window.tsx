@@ -418,9 +418,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                   }`}
                 >
                   <Image
-                    src={`/Frame--${
-                      m.author ? hashString(m.author as string) % 9 : 0
-                    }.png`}
+                    src={`/Frame--0.png`}
                     alt=""
                     width={40}
                     height={40}

@@ -79,14 +79,7 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
           className="flex flex-col items-center justify-center hover:bg-pink-50 p-2 rounded-2xl transition duration-200"
           onClick={toggleDropdown}
         >
-          <Image
-            src={`/Frame--${
-              username ? hashString(username as string) % 9 : 0
-            }.png`}
-            alt=""
-            width={60}
-            height={60}
-          ></Image>
+          <Image src={`/Frame--0.png`} alt="" width={60} height={60}></Image>
           <p className="text-sm font-roboto text-gray-800 mt-2">{username}</p>
           <ChevronDownIcon className="h-4 w-4 text-gray-800" />
         </button>

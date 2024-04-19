@@ -86,9 +86,7 @@ const Friends: React.FC<ChatFriendsProps> = ({
               }}
             >
               <Image
-                src={`/Frame--${
-                  friend ? hashString(friend as string) % 9 : 0
-                }.png`}
+                src={`/Frame--0.png`}
                 alt=""
                 width={75}
                 height={50}
