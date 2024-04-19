@@ -60,18 +60,18 @@ const Home: React.FC = () => {
         {showChatWindow ? (
           <ChatWindow selectedGroup={selectedGroup} isPrivate={isPrivate} />
         ) : (
-          <div className="bg-bgColor w-2/3">
+          <div className="bg-gradient-to-r from-[#F6F5F2] to-[#F3D0D7] w-2/3 ">
             <div className="w-full h-full justify-center items-center flex-col flex">
               <Image
-                src="/logo1.png"
+                src="/barby-logo.png"
                 alt=""
                 width={200}
                 height={200}
                 className="opacity-50"
               ></Image>
-              <p className="text-xl font-roboto text-white opacity-40 mt-2">
+              {/* <p className="text-xl font-roboto text-gray-600 opacity-50 mt-4">
                 Start your new chat!
-              </p>
+              </p> */}
             </div>
           </div>
         )}

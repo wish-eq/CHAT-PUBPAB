@@ -63,7 +63,7 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
     };
   }, [dropdownRef]);
   return (
-    <div className="w-64 bg-gradient-to-r from-[#F6F5F2] to-[#F3D0D7] flex text-gray-800 flex-col justify-start items-center space-y-4 font-roboto">
+    <div className="w-64 bg-gradient-to-r  border-gray-500 from-[#F3D0D7] to-[#F6F5F2] flex text-gray-800 flex-col justify-start items-center space-y-4 font-roboto">
       <Image
         src="/barby-logo.png"
         alt=""
@@ -76,19 +76,19 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
           ref={accountButtonRef}
           type="button"
           name="account"
-          className="flex flex-col items-center justify-center hover:bg-bgColor p-2 rounded-2xl transition duration-200"
+          className="flex flex-col items-center justify-center hover:bg-pink-50 p-2 rounded-2xl transition duration-200"
           onClick={toggleDropdown}
         >
           <Image
-            src={`/Frame_${
+            src={`/Frame--${
               username ? hashString(username as string) % 9 : 0
             }.png`}
             alt=""
-            width={50}
-            height={50}
+            width={60}
+            height={60}
           ></Image>
           <p className="text-sm font-roboto text-gray-800 mt-2">{username}</p>
-          <ChevronDownIcon className="h-4 w-4 text-fontWhiteDarkBgColor" />
+          <ChevronDownIcon className="h-4 w-4 text-gray-800" />
         </button>
         {dropdownVisible && (
           <div
@@ -106,8 +106,8 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
         <button
           type="button"
           name="friends"
-          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:bg-bgColor ${
-            room === "friends" ? "text-purple" : ""
+          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:bg-pink-50 ${
+            room === "friends" ? "text-pink-800" : ""
           } transition duration-250`}
           onClick={() => {
             setPage("friends");
@@ -123,8 +123,8 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
         <button
           type="button"
           name="groups"
-          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:bg-bgColor ${
-            room === "groups" ? "text-purple" : ""
+          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:bg-pink-50 ${
+            room === "groups" ? "text-pink-800" : ""
           } transition duration-250`}
           onClick={() => {
             setPage("groups");
@@ -141,8 +141,8 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
         <button
           type="button"
           name="all-chats"
-          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:bg-bgColor ${
-            room === "all-chats" ? "text-purple" : ""
+          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:bg-pink-50 ${
+            room === "all-chats" ? "text-pink-800" : ""
           } transition duration-250`}
           onClick={() => {
             setPage("all-chats");

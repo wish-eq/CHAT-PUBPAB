@@ -58,7 +58,7 @@ const ChatItem: React.FC<GroupItemProps> = ({
         }}
       >
         <Image
-          src={`/${chat.name.includes("(") ? "G" : "Frame_"}${
+          src={`/${chat.name.includes("(") ? "G" : "Frame--"}${
             chat.name ? hashString(chat.name.split(" (")[0] as string) % 9 : 0
           }.png`}
           alt=""

@@ -57,8 +57,8 @@ const Login = () => {
           >
             Try it out !
           </button>
+          {warning && <p className="mt-3 text-pink-800">{warning}</p>}
         </form>
-        {warning && <p className="mt-3 text-red-500">{warning}</p>}
       </div>
     </div>
   );

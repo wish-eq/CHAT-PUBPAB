@@ -97,15 +97,15 @@ const Chats: React.FC<allChatsProps> = ({
   }, [username]);
 
   return (
-    <div className="bg-bgColor w-1/3 border-r border-borderColor">
-      <div className="h-[20%] w-full border-b border-borderColor items-center flex justify-center">
+    <div className="bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] w-1/3  border-borderColor">
+      <div className="h-[20%] w-full border-borderColor items-center flex justify-center">
         <form
           className="w-4/5 flex items-center relative"
           onSubmit={handleSearch}
         >
           <input
             type="text"
-            className="w-full h-12 rounded-2xl bg-borderColor pl-5 text-white pr-10"
+            className="w-full h-12 rounded-2xl bg-[#F6F5F2] pl-5 text-gray-800 focus:outline-none pr-10"
             placeholder="Search"
             name="search_user"
           />

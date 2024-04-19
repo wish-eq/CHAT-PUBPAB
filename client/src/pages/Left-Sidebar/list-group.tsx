@@ -90,15 +90,15 @@ const Groups: React.FC<ChatGroupsProps> = ({
   );
 
   return (
-    <div className="bg-bgColor w-1/3 border-r border-borderColor">
-      <div className="h-[20%] w-full border-b border-borderColor items-center flex justify-center flex-col">
+    <div className="bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] w-1/3  border-borderColor">
+      <div className="h-[20%] w-full mt-4 border-borderColor items-center flex justify-center flex-col">
         <form
           className="w-4/5 flex items-center relative"
           onSubmit={handleSearch}
         >
           <input
             type="text"
-            className="w-full h-12 rounded-2xl bg-borderColor pl-5 text-white pr-10"
+            className="w-full h-12 rounded-2xl bg-[#F6F5F2] pl-5 text-white pr-10"
             placeholder="Search"
             name="search_user"
           />
@@ -113,14 +113,14 @@ const Groups: React.FC<ChatGroupsProps> = ({
         >
           <input
             type="text"
-            className="w-full h-12 rounded-2xl bg-borderColor pl-5 text-white"
+            className="w-full h-12 rounded-2xl bg-[#F6F5F2] pl-5 text-white"
             placeholder="Enter Group Name"
             name="group_name"
           />
           <button
             type="submit"
             name="all-chats"
-            className="w-20 h-12 rounded-3xl text-white ml-2 bg-purple hover:bg-opacity-60 transition duration-300"
+            className="w-20 h-12 rounded-3xl text-white ml-2 bg-[#E240A2] hover:bg-opacity-60 transition duration-300"
           >
             Create
           </button>
