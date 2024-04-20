@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import { io } from "socket.io-client";
+import styles from "@/styles/style.module.css"
 
 const URL = process.env.NEXT_PUBLIC_URL ?? "";
 export const socket = io(URL, { transports: ["websocket"] });
@@ -36,7 +37,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-1 flex-col items-center bg-[#F6F5F2] w-screen h-screen justify-center">
+    <div className={`${styles.font} flex flex-1 flex-col items-center bg-[#F6F5F2] w-screen h-screen justify-center`}>
       <div className="border border-[#F3D0D7] bg-gradient-to-r from-[#F6F5F2] to-[#F3D0D7] rounded-xl flex flex-col justify-center items-center px-12 py-16">
         <Image src="/barby-logo.png" alt="" width={200} height={100}></Image>
         <form

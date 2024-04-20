@@ -4,6 +4,8 @@ import { socket } from "../login";
 import { useRouter } from "next/router";
 import hashString from "@/utils/hashString";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import styles from "@/styles/style.module.css"
+import SearchIcon from '@mui/icons-material/Search';
 
 interface ChatFriendsProps {
   onGroupClick: (GroupName: string, isprivate: any) => void;
@@ -54,7 +56,7 @@ const Friends: React.FC<ChatFriendsProps> = ({
   }, [username]);
 
   return (
-    <div className="bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] w-1/3 border-borderColor">
+    <div className={`${styles.font} bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] w-1/3 border-borderColor`}>
       <div className="h-[20%] w-full  border-borderColor items-center flex justify-center">
         <form
           className="w-4/5 flex items-center relative"
@@ -67,7 +69,7 @@ const Friends: React.FC<ChatFriendsProps> = ({
             name="search_user"
           />
           <div className="absolute right-0 top-0 h-full w-10 text-center text-gray-400 pointer-events-none flex items-center justify-center">
-            <MagnifyingGlassIcon className="h-6 w-6 text-fontBgColor" />
+            <SearchIcon className="h-6 w-6 text-fontBgColor" />
           </div>
         </form>
       </div>

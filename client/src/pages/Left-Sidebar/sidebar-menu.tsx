@@ -10,12 +10,17 @@ import {
 } from "@heroicons/react/24/outline";
 // import { useState } from "react";
 // import Image from "next/image";
+import LogoutIcon from '@mui/icons-material/Logout';
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 // import Sidebar from "./Left-Sidebar/sidebar";
+import GroupIcon from '@mui/icons-material/Group';
+import PersonIcon from '@mui/icons-material/Person';
 import ChatWindow from "../Chat-Window/chat-window";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
+import ChatIcon from '@mui/icons-material/Chat';
+import styles from "@/styles/style.module.css"
 import hashString from "@/utils/hashString";
 
 const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
@@ -63,7 +68,7 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
     };
   }, [dropdownRef]);
   return (
-    <div className="w-64 bg-gradient-to-r  border-gray-500 from-[#F3D0D7] to-[#F6F5F2] flex text-gray-800 flex-col justify-start items-center space-y-4 font-roboto">
+    <div className={`${styles.font} w-64 space-y-5 bg-gradient-to-r  border-gray-500 from-[#F3D0D7] to-[#F6F5F2] flex text-gray-800 flex-col justify-start items-center font-roboto`}>
       <Image
         src="/barby-logo.png"
         alt=""
@@ -72,35 +77,16 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
         className="mt-8"
       ></Image>
       <div className="">
-        <button
-          ref={accountButtonRef}
-          type="button"
-          name="account"
-          className="flex flex-col items-center justify-center hover:bg-pink-50 p-2 rounded-2xl transition duration-200"
-          onClick={toggleDropdown}
-        >
           <Image src={`/Frame--0.png`} alt="" width={60} height={60}></Image>
-          <p className="text-sm font-roboto text-gray-800 mt-2">{username}</p>
-          <ChevronDownIcon className="h-4 w-4 text-gray-800" />
-        </button>
-        {dropdownVisible && (
-          <div
-            ref={dropdownRef}
-            className="bg-borderColor bg-opacity-80 text-gray-800 absolute mt-2 top-16 right-4 shadow-md py-2 px-4 rounded-md z-10 hover:bg-red-500 transition duration-200"
-            onClick={toggleDropdown}
-          >
-            <button onClick={handleLogout} className="text-sm">
-              Logout
-            </button>
-          </div>
-        )}
+          <p className="text-xl text-center text-gray-800 mt-2">{username}</p>
       </div>
+
       <div className="mb-8">
         <button
           type="button"
           name="friends"
-          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:bg-pink-50 ${
-            room === "friends" ? "text-pink-800" : ""
+          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:text-pink-600 ${
+            room === "friends" ? "text-pink-600 bg-pink-50" : ""
           } transition duration-250`}
           onClick={() => {
             setPage("friends");
@@ -108,7 +94,7 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
             console.log("friends");
           }}
         >
-          <UserIcon className="h-8 w-8" />
+          <PersonIcon className="h-8 w-8"/>
           <span className="text-sm font-medium">Friends</span>
         </button>
       </div>
@@ -116,8 +102,8 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
         <button
           type="button"
           name="groups"
-          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:bg-pink-50 ${
-            room === "groups" ? "text-pink-800" : ""
+          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:text-pink-600 ${
+            room === "groups" ? "text-pink-600 bg-pink-50" : ""
           } transition duration-250`}
           onClick={() => {
             setPage("groups");
@@ -125,7 +111,7 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
             console.log("groups");
           }}
         >
-          <UserGroupIcon className="h-8 w-8" />
+          <GroupIcon className="h-10 w-10"/>
           <span className="text-sm font-medium">Groups</span>
         </button>
       </div>
@@ -134,8 +120,8 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
         <button
           type="button"
           name="all-chats"
-          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:bg-pink-50 ${
-            room === "all-chats" ? "text-pink-800" : ""
+          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:text-pink-600 ${
+            room === "all-chats" ? "text-pink-600 bg-pink-50" : ""
           } transition duration-250`}
           onClick={() => {
             setPage("all-chats");
@@ -143,8 +129,20 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
             console.log("all-chats");
           }}
         >
-          <ChatBubbleOvalLeftEllipsisIcon className="h-8 w-8" />
+          <ChatIcon className="h-8 w-8" />
           <span className="text-sm font-medium">All Chats</span>
+        </button>
+      </div>
+      
+      <div className="mb-8">
+        <button
+          type="button"
+          name="groups"
+          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:text-pink-600 transition duration-250`}
+          onClick={handleLogout}
+        >
+          <LogoutIcon className="h-8 w-8" />
+          <span className="text-sm font-medium">Logout</span>
         </button>
       </div>
     </div>
