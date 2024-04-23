@@ -60,7 +60,7 @@ const Home: React.FC = () => {
         {showChatWindow ? (
           <ChatWindow selectedGroup={selectedGroup} isPrivate={isPrivate} />
         ) : (
-          <div className="bg-gradient-to-r from-[#F6F5F2] to-[#F3D0D7] w-2/3 ">
+          <div className="bg-gradient-to-r from-[#F6F5F2] to-[#F3D0D7] dark:from-[#F3D0D7] dark:to-[#cd8896] w-2/3 ">
             <div className="w-full h-full justify-center items-center flex-col flex">
               <Image
                 src="/barby-logo.png"

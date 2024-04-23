@@ -22,6 +22,7 @@ import { useRouter } from "next/router";
 import ChatIcon from '@mui/icons-material/Chat';
 import styles from "@/styles/style.module.css"
 import hashString from "@/utils/hashString";
+import ThemeButton from "../theme_button";
 
 const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
   const [room, setRoom] = useState("all-chats");
@@ -68,14 +69,21 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
     };
   }, [dropdownRef]);
   return (
-    <div className={`${styles.font} w-64 space-y-5 bg-gradient-to-r  border-gray-500 from-[#F3D0D7] to-[#F6F5F2] flex text-gray-800 flex-col justify-start items-center font-roboto`}>
-      <Image
-        src="/barby-logo.png"
-        alt=""
-        width={150}
-        height={75}
-        className="mt-8"
-      ></Image>
+    <div className={`${styles.font} relative w-64 space-y-5 bg-gradient-to-r  border-gray-500 from-[#F3D0D7] to-[#F6F5F2]
+     dark:from-[#F3D0D7] dark:to-[#cd8896] flex text-gray-800 flex-col justify-start items-center font-roboto`}>
+      <div className="absolute top-4 right-3">
+        <ThemeButton/>
+      </div> 
+      
+      <div className="pt-10">
+        <Image
+          src="/barby-logo.png"
+          alt=""
+          width={150}
+          height={75}
+        ></Image>
+      </div>
+
       <div className="">
           <Image src={`/Frame--0.png`} alt="" width={60} height={60}></Image>
           <p className="text-xl text-center text-gray-800 mt-2">{username}</p>
@@ -86,7 +94,7 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
           type="button"
           name="friends"
           className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:text-pink-600 ${
-            room === "friends" ? "text-pink-600 bg-pink-50" : ""
+            room === "friends" ? "text-pink-600 bg-pink-100 dark:bg-pink-50" : "hover:text-pink-600 dark:hover:text-pink-100"
           } transition duration-250`}
           onClick={() => {
             setPage("friends");
@@ -103,7 +111,7 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
           type="button"
           name="groups"
           className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:text-pink-600 ${
-            room === "groups" ? "text-pink-600 bg-pink-50" : ""
+            room === "groups" ? "text-pink-600 bg-pink-100 dark:bg-pink-50" : "hover:text-pink-600 dark:hover:text-pink-100"
           } transition duration-250`}
           onClick={() => {
             setPage("groups");
@@ -120,8 +128,8 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
         <button
           type="button"
           name="all-chats"
-          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:text-pink-600 ${
-            room === "all-chats" ? "text-pink-600 bg-pink-50" : ""
+          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl  ${
+            room === "all-chats" ? "text-pink-600 bg-pink-100 dark:bg-pink-50" : "hover:text-pink-600 dark:hover:text-pink-100"
           } transition duration-250`}
           onClick={() => {
             setPage("all-chats");
@@ -138,7 +146,7 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
         <button
           type="button"
           name="groups"
-          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:text-pink-600 transition duration-250`}
+          className={`flex flex-col items-center justify-center w-20 h-20 rounded-xl hover:text-pink-600 dark:hover:text-pink-100 transition duration-250`}
           onClick={handleLogout}
         >
           <LogoutIcon className="h-8 w-8" />

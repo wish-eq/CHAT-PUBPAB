@@ -92,7 +92,7 @@ const Groups: React.FC<ChatGroupsProps> = ({
   );
 
   return (
-    <div className={`${styles.font} bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] w-1/3  border-borderColor`}>
+    <div className={`${styles.font} bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] dark:from-[#F3D0D7] dark:to-[#cd8896] w-1/3  border-borderColor`}>
       <div className="h-[20%] w-full mt-4 border-borderColor items-center flex justify-center flex-col">
         <form
           className="w-4/5 flex items-center relative"
@@ -100,7 +100,7 @@ const Groups: React.FC<ChatGroupsProps> = ({
         >
           <input
             type="text"
-            className="w-full h-12 rounded-2xl bg-[#F6F5F2] pl-5 pr-10"
+            className="w-full h-12 rounded-2xl bg-[#F6F5F2] dark:bg-[#F3D0D7] dark:border-[#cd8896] dark:border-[2px] pl-5 pr-10 outline-none"
             placeholder="Search"
             name="search_user"
           />
@@ -115,7 +115,7 @@ const Groups: React.FC<ChatGroupsProps> = ({
         >
           <input
             type="text"
-            className="w-full h-12 rounded-2xl bg-[#F6F5F2] pl-5"
+            className="w-full h-12 rounded-2xl bg-[#F6F5F2] dark:bg-[#F3D0D7] dark:border-[#cd8896] dark:border-[2px] outline-none pl-5"
             placeholder="Enter Group Name"
             name="group_name"
           />

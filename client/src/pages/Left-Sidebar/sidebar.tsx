@@ -3,7 +3,6 @@ import Chats from "./list-chat";
 import Friends from "./list-friend";
 import Groups from "./list-group";
 import SidebarMenu from "./sidebar-menu";
-import Image from "next/image";
 
 interface SidebarProps {
   onGroupClick: (groupName: string, isprivate: any) => void; // Update the type of onGroupClick
