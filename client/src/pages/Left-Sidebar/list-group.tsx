@@ -7,21 +7,21 @@ import styles from "@/styles/style.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 
 interface Group {
-  groupName: any;
-  people: any;
+  groupName: string;
+  people: number;
 }
 
 interface ChatGroupsProps {
-  onGroupClick: (groupName: any, isprivate: any) => void;
-  selectedGroup: any;
+  onGroupClick: (groupName: string, isprivate: any) => void;
+  selectedGroup: string;
   isPrivate: any;
 }
 
 export type RoomDetails = {
-  room: any;
-  userCount: any;
+  room: string;
+  userCount: number;
   latestMessage: Message;
-  private: any;
+  private: boolean;
 };
 
 const Groups: React.FC<ChatGroupsProps> = ({
@@ -29,6 +29,7 @@ const Groups: React.FC<ChatGroupsProps> = ({
   selectedGroup,
   isPrivate,
 }) => {
+
   const [groupList, setGroupList] = useState<Group[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();

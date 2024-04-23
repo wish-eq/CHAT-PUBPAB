@@ -8,16 +8,16 @@ import styles from "@/styles/style.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 
 export interface Chat {
-  roomName: any;
-  name: any;
-  message: any;
+  roomName: string;
+  name: string;
+  message: string;
   isPrivate: any;
-  pin: any;
+  pin: boolean;
 }
 
 interface allChatsProps {
-  onGroupClick: (groupName: any, isprivate: any) => void;
-  selectedGroup: any;
+  onGroupClick: (groupName: string, isprivate: any) => void;
+  selectedGroup: string;
   isPrivate: any;
 }
 
@@ -26,11 +26,13 @@ const Chats: React.FC<allChatsProps> = ({
   selectedGroup,
   isPrivate,
 }) => {
+
   const [likedList, setLikedList] = useState<String[]>([]);
   const [chatList, setChatList] = useState<Chat[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
   const { username } = router.query;
+
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,7 +64,7 @@ const Chats: React.FC<allChatsProps> = ({
     socket.emit("get-user-rooms", { username: username });
   }, [username]);
 
-  useEffect(() => {
+useEffect(() => {
     const chatListener = (data: { room: RoomDetails; pin: boolean }[]) => {
       const chats: Chat[] = [];
       const pinList: string[] = [];
@@ -98,6 +100,7 @@ const Chats: React.FC<allChatsProps> = ({
     };
   }, [username]);
 
+
   return (
     <div
       className={`${styles.font} bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] dark:from-[#F3D0D7] dark:to-[#cd8896] w-1/3  border-borderColor`}
@@ -119,7 +122,7 @@ const Chats: React.FC<allChatsProps> = ({
         </form>
       </div>
       <div className="h-[80%] overflow-y-auto">
-        {filteredChat
+      {filteredChat
           .map((chat, index) => (
             <ChatItem
               key={index}

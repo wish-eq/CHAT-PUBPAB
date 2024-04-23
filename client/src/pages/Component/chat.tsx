@@ -10,7 +10,7 @@ import styles from "@/styles/style.module.css";
 interface GroupItemProps {
   chat: Chat;
   setLikedList: React.Dispatch<React.SetStateAction<String[]>>;
-  onGroupClick: (groupName: any, isPrivate: any) => void;
+  onGroupClick: (groupName: string, isPrivate: any) => void;
   isPrivate: any;
   selectedGroup: string;
 }
@@ -22,13 +22,12 @@ const ChatItem: React.FC<GroupItemProps> = ({
   isPrivate,
   selectedGroup,
 }) => {
-  const [isHeartActive, setIsHeartActive] = useState(chat?.pin ?? false);
-
+  const [isHeartActive, setIsHeartActive] = useState(chat.pin);
   const router = useRouter();
   const { username } = router.query;
 
   const handleHeartClick = (e: React.MouseEvent<SVGElement>) => {
-    e.stopPropagation(); // Stop the click event from propagating to parent elements
+    e.stopPropagation();  // Stop the click event from propagating to parent elements
     socket.emit("pin-chat", {
       username: username,
       room: chat.roomName,
@@ -45,8 +44,7 @@ const ChatItem: React.FC<GroupItemProps> = ({
   return (
     <div
       className={`${styles.font} h-28 w-full flex cursor-pointer ${
-        selectedGroup === (chat.isPrivate ? chat.name : chat.roomName) &&
-        isPrivate === chat.isPrivate
+        selectedGroup === (chat.isPrivate ? chat.name : chat.roomName) && isPrivate === chat.isPrivate
           ? "bg-pink-900 bg-opacity-10"
           : "hover:bg-pink-500 hover:bg-opacity-5"
       } transition duration-250`}
