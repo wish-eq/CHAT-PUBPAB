@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import { formatTime } from "@/utils/date";
 import hashString from "@/utils/hashString";
 import { formatRoomName } from "@/utils/private_chat";
+import styles from "@/styles/style.module.css";
 
 export type Message = {
   id: string;
@@ -340,7 +341,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
   };
 
   return (
-    <div className="h-full w-2/3 flex flex-col " onClick={hideContextMenu}>
+    <div className={`${styles.font} h-full w-2/3 flex flex-col`} onClick={hideContextMenu}>
       <div className="h-20 w-full bg-gradient-to-t from-[#F6F5F2] to-[#F3D0D7] dark:from-[#F3D0D7] dark:to-[#cd8896]  flex-shrink-0">
         <div className="container mx-auto flex justify-center items-center h-full">
           <div>
@@ -507,7 +508,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
           className="relative w-full flex-grow mr-4"
         >
           <input
-            className="p-2 pl-4 w-full rounded-xl bg-[#F6F5F2] dark:bg-[#F3D0D7] dark:border-[#cd8896] border-[2px] text-gray-800 hover:border-indigo-600 h-14 focus:outline-none"
+            className="p-2 pl-4 w-full rounded-xl bg-[#F6F5F2] dark:bg-[#F3D0D7] dark:border-[#cd8896] border-[2px] text-gray-800 h-14 focus:outline-none"
             type="text"
             placeholder="Message..."
             value={message}

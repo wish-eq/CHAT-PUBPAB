@@ -141,9 +141,38 @@ const Chats: React.FC<allChatsProps> = ({
           pin: false,
         },
       ],
-      isPrivate: false,
+      isPrivate: true,
+      likedList: [],
+    },{
+      id: "4",
+      name: "Chat 4",
+      chat: [
+        {
+          roomName: "Room 4",
+          name: "User4",
+          message: "Good morning",
+          isPrivate: false,
+          pin: false,
+        },
+      ],
+      isPrivate: true,
       likedList: [],
     },
+    {
+      id: "5",
+      name: "Chat 5",
+      chat: [
+        {
+          roomName: "Room 5",
+          name: "User5",
+          message: "Good morning",
+          isPrivate: false,
+          pin: false,
+        },
+      ],
+      isPrivate: true,
+      likedList: [],
+    }
   ];
 
   return (
@@ -167,18 +196,17 @@ const Chats: React.FC<allChatsProps> = ({
         </form>
       </div>
       <div className="h-[80%] overflow-y-auto">
-        {mockChatList.map((group) =>
-          group.chat.map((chat, index) => (
-            <ChatItem
-              key={index}
-              chat={chat}
-              setLikedList={setLikedList}
-              onGroupClick={onGroupClick}
-              selectedGroup={selectedGroup}
-              isPrivate={group.isPrivate}
-            />
-          ))
-        )}
+        {mockChatList
+        .map((chat, index) => (
+          <ChatItem
+            key={index}
+            setLikedList={setLikedList}
+            onGroupClick={onGroupClick}
+            selectedGroup={selectedGroup}
+            isPrivate={isPrivate} 
+            chat={chat}/>
+        ))
+        .sort(customSort)}
       </div>
     </div>
   );

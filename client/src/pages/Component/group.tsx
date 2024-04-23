@@ -1,5 +1,6 @@
 import hashString from "@/utils/hashString";
 import Image from "next/image";
+import styles from "@/styles/style.module.css";
 
 interface Group {
   groupName: string;
@@ -20,7 +21,7 @@ const GroupItem: React.FC<GroupItemProps> = ({
 }) => {
   return (
     <div
-      className={`h-28 w-full cursor-pointer items-center flex ${
+      className={`${styles.font} h-28 w-full cursor-pointer items-center flex ${
         group.groupName === selectedGroup && !isPrivate
           ? "bg-pink-900 bg-opacity-10"
           : "hover:bg-pink-500 hover:bg-opacity-5"
@@ -39,7 +40,7 @@ const GroupItem: React.FC<GroupItemProps> = ({
         height={50}
         className="ml-6"
       ></Image>
-      <div className="font-roboto ml-6">
+      <div className="ml-6">
         <p
           className={`text-gray-800 text-xl ${
             group.groupName === selectedGroup && !isPrivate ? "font-bold" : ""

@@ -81,7 +81,7 @@ const Friends: React.FC<ChatFriendsProps> = ({
         {mock.map((friend, index) => {
           return (
             <div
-              className={`h-28 w-full items-center flex cursor-pointer ${
+              className={`${styles.font} h-28 w-full items-center flex cursor-pointer ${
                 friend == selectedFriend && isPrivate
                   ? "bg-pink-900 bg-opacity-10"
                   : "hover:bg-pink-500 hover:bg-opacity-5"
@@ -100,7 +100,7 @@ const Friends: React.FC<ChatFriendsProps> = ({
                 height={50}
                 className="ml-6"
               ></Image>
-              <div className="font-roboto ml-6">
+              <div className="ml-6">
                 <p
                   className={`text-gray-800 text-xl ${
                     friend === selectedFriend && isPrivate ? "font-bold" : ""
