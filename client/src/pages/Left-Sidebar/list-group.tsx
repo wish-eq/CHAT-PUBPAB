@@ -30,6 +30,14 @@ const Groups: React.FC<ChatGroupsProps> = ({
   selectedGroup,
   isPrivate,
 }) => {
+  const groups = [
+    { groupName: "Group 1", people: 5 },
+    { groupName: "Group 2", people: 3 },
+    { groupName: "Group 3", people: 4 },
+    { groupName: "Group 4", people: 2 },
+    { groupName: "Group 5", people: 6 },
+  ];
+
   const [groupList, setGroupList] = useState<Group[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
@@ -42,6 +50,10 @@ const Groups: React.FC<ChatGroupsProps> = ({
     ) as HTMLInputElement;
     setSearchTerm(searchQuery.value);
   };
+
+  const filteredGroups = groups.filter((group) =>
+    group.groupName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   useEffect(() => {
     socket.emit("get-all-rooms");
@@ -87,18 +99,6 @@ const Groups: React.FC<ChatGroupsProps> = ({
     groupName.value = "";
   };
 
-  const mock = [
-    { groupName: "Group 1", people: 5 },
-    { groupName: "Group 2", people: 3 },
-    { groupName: "Group 3", people: 4 },
-    { groupName: "Group 4", people: 2 },
-    { groupName: "Group 5", people: 6 },
-  ];
-
-  const filteredGroups = groupList.filter((group) =>
-    group.groupName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   return (
     <div
       className={`${styles.font} bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] dark:from-[#F3D0D7] dark:to-[#cd8896] w-1/3  border-borderColor`}
@@ -139,7 +139,7 @@ const Groups: React.FC<ChatGroupsProps> = ({
         </form>
       </div>
       <div className="h-[80%] overflow-y-auto">
-        {mock.map((group, index) => (
+        {filteredGroups.map((group, index) => (
           <GroupItem
             onGroupClick={onGroupClick}
             key={index}

@@ -4,7 +4,6 @@ import { socket } from "../login";
 import { RoomDetails } from "./list-group";
 import { getFriendName } from "@/utils/private_chat";
 import ChatItem from "../Component/chat";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import styles from "@/styles/style.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -27,77 +26,6 @@ const Chats: React.FC<allChatsProps> = ({
   selectedGroup,
   isPrivate,
 }) => {
-  const [likedList, setLikedList] = useState<String[]>([]);
-  const [chatList, setChatList] = useState<Chat[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const router = useRouter();
-  const { username } = router.query;
-
-  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const searchQuery = e.currentTarget.elements.namedItem(
-      "search_user"
-    ) as HTMLInputElement;
-    setSearchTerm(searchQuery.value);
-  };
-  const filteredChats = chatList.filter((chat) => {
-    const name = chat.isPrivate ? chat.name : chat.roomName;
-    return name.toLowerCase().includes(searchTerm.toLowerCase());
-  });
-  const customSort = (a: JSX.Element, b: JSX.Element) => {
-    const aIndex = likedList.indexOf(a.props.chat.name);
-    const bIndex = likedList.indexOf(b.props.chat.name);
-    if (aIndex !== -1 && bIndex !== -1) {
-      return bIndex - aIndex;
-    } else if (aIndex !== -1) {
-      return -1;
-    } else if (bIndex !== -1) {
-      return 1;
-    } else {
-      return 0;
-    }
-  };
-
-  useEffect(() => {
-    socket.emit("get-user-rooms", { username: username });
-  }, [username]);
-
-  useEffect(() => {
-    const chatListener = (data: { room: RoomDetails; pin: boolean }[]) => {
-      const chats: Chat[] = [];
-      const pinList: string[] = [];
-      data.map((roomDetails) => {
-        let chatName = "";
-        if (roomDetails.room.private) {
-          chatName =
-            username !== undefined && typeof username === "string"
-              ? getFriendName(username, roomDetails.room.room)
-              : "";
-        } else {
-          chatName = `${roomDetails.room.room} (${roomDetails.room.userCount})`;
-        }
-        const chat: Chat = {
-          roomName: roomDetails.room.room,
-          name: chatName,
-          message: roomDetails.room.latestMessage.message,
-          isPrivate: roomDetails.room.private,
-          pin: roomDetails.pin,
-        };
-        if (roomDetails.pin) {
-          pinList.push(chatName);
-        }
-        chats.push(chat);
-      });
-      setChatList(chats);
-      setLikedList(pinList);
-    };
-    socket.on("user-rooms", chatListener);
-
-    return () => {
-      socket.off("user-rooms", chatListener);
-    };
-  }, [username]);
-
   const mockChatList = [
     {
       id: "1",
@@ -111,7 +39,7 @@ const Chats: React.FC<allChatsProps> = ({
           pin: false,
         },
       ],
-      isPrivate: false,
+      isPrivate: true,
       likedList: [],
     },
     {
@@ -175,6 +103,80 @@ const Chats: React.FC<allChatsProps> = ({
     }
   ];
 
+  const [likedList, setLikedList] = useState<String[]>([]);
+  const [chatList, setChatList] = useState<Chat[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
+  const { username } = router.query;
+
+
+  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const searchQuery = e.currentTarget.elements.namedItem(
+      "search_user"
+    ) as HTMLInputElement;
+    setSearchTerm(searchQuery.value);
+  };
+
+  const filteredMockChatList = mockChatList.filter((chat) =>
+    chat.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const customSort = (a: JSX.Element, b: JSX.Element) => {
+    const aIndex = likedList.indexOf(a.props.chat.name);
+    const bIndex = likedList.indexOf(b.props.chat.name);
+    if (aIndex !== -1 && bIndex !== -1) {
+      return bIndex - aIndex;
+    } else if (aIndex !== -1) {
+      return -1;
+    } else if (bIndex !== -1) {
+      return 1;
+    } else {
+      return 0;
+    }
+  };
+
+  useEffect(() => {
+    socket.emit("get-user-rooms", { username: username });
+  }, [username]);
+
+useEffect(() => {
+    const chatListener = (data: { room: RoomDetails; pin: boolean }[]) => {
+      const chats: Chat[] = [];
+      const pinList: string[] = [];
+      data.map((roomDetails) => {
+        let chatName = "";
+        if (roomDetails.room.private) {
+          chatName =
+            username !== undefined && typeof username === "string"
+              ? getFriendName(username, roomDetails.room.room)
+              : "";
+        } else {
+          chatName = `${roomDetails.room.room} (${roomDetails.room.userCount})`;
+        }
+        const chat: Chat = {
+          roomName: roomDetails.room.room,
+          name: chatName,
+          message: roomDetails.room.latestMessage.message,
+          isPrivate: roomDetails.room.private,
+          pin: roomDetails.pin,
+        };
+        if (roomDetails.pin) {
+          pinList.push(chatName);
+        }
+        chats.push(chat);
+      });
+      setChatList(chats);
+      setLikedList(pinList);
+    };
+    socket.on("user-rooms", chatListener);
+
+    return () => {
+      socket.off("user-rooms", chatListener);
+    };
+  }, [username]);
+
+
   return (
     <div
       className={`${styles.font} bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] dark:from-[#F3D0D7] dark:to-[#cd8896] w-1/3  border-borderColor`}
@@ -196,17 +198,18 @@ const Chats: React.FC<allChatsProps> = ({
         </form>
       </div>
       <div className="h-[80%] overflow-y-auto">
-        {mockChatList
-        .map((chat, index) => (
-          <ChatItem
-            key={index}
-            setLikedList={setLikedList}
-            onGroupClick={onGroupClick}
-            selectedGroup={selectedGroup}
-            isPrivate={isPrivate} 
-            chat={chat}/>
-        ))
-        .sort(customSort)}
+      {filteredMockChatList
+          .map((chat, index) => (
+            <ChatItem
+              key={index}
+              setLikedList={setLikedList}
+              onGroupClick={onGroupClick}
+              selectedGroup={selectedGroup}
+              isPrivate={isPrivate}
+              chat={chat}
+            />
+          ))
+          .sort(customSort)}
       </div>
     </div>
   );

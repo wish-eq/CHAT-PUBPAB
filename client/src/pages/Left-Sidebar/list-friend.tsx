@@ -23,6 +23,7 @@ const Friends: React.FC<ChatFriendsProps> = ({
   const router = useRouter();
   const { username } = router.query;
 
+  const mockFriendList = ["John", "Jane", "Doe", "Smith", "Alice", "Bob"];
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const searchQuery = e.currentTarget.elements.namedItem(
@@ -30,9 +31,22 @@ const Friends: React.FC<ChatFriendsProps> = ({
     ) as HTMLInputElement;
     setSearchTerm(searchQuery.value);
   };
-  const filteredFriends = friendList.filter((name) =>
+
+  const filteredMockFriendList = mockFriendList.filter((name) =>
     name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   const searchQuery = e.currentTarget.elements.namedItem(
+  //     "search_user"
+  //   ) as HTMLInputElement;
+  //   setSearchTerm(searchQuery.value);
+  // };
+
+  // const filteredMockFriendList = mockFriendList.filter((chat) =>
+  //   chat.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
 
   useEffect(() => {
     socket.emit("get-all-users");
@@ -55,8 +69,6 @@ const Friends: React.FC<ChatFriendsProps> = ({
     };
   }, [username]);
 
-  const mock = ["John", "Jane", "Doe", "Smith", "Alice", "Bob"];
-
   return (
     <div
       className={`${styles.font} bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] dark:from-[#F3D0D7] dark:to-[#cd8896] w-1/3 border-borderColor`}
@@ -78,7 +90,7 @@ const Friends: React.FC<ChatFriendsProps> = ({
         </form>
       </div>
       <div className="h-[80%] overflow-y-auto">
-        {mock.map((friend, index) => {
+        {filteredMockFriendList.map((friend, index) => {
           return (
             <div
               className={`${styles.font} h-28 w-full items-center flex cursor-pointer ${
