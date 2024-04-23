@@ -1,6 +1,8 @@
 # dependency directories
 node_modules/
 
+server/config/config.env
+
 # logs
 logs
 *.log
