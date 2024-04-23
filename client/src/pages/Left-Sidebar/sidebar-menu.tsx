@@ -3,44 +3,26 @@ type SidebarMenuProps = {
   currentPage: string;
 };
 
-import {
-  ChatBubbleOvalLeftEllipsisIcon,
-  UserGroupIcon,
-  UserIcon,
-} from "@heroicons/react/24/outline";
 import LogoutIcon from "@mui/icons-material/Logout";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-// import Sidebar from "./Left-Sidebar/sidebar";
 import GroupIcon from "@mui/icons-material/Group";
 import PersonIcon from "@mui/icons-material/Person";
-import ChatWindow from "../Chat-Window/chat-window";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import ChatIcon from "@mui/icons-material/Chat";
 import styles from "@/styles/style.module.css";
-import hashString from "@/utils/hashString";
 import ThemeButton from "../theme_button";
 import ReviewModal from "../Component/ReviewModal";
 
 const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
   const [room, setRoom] = useState("all-chats");
-  ///
-
   const [profileURL, setProfileURL] = useState("");
 
   const router = useRouter();
   const { username } = router.query;
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const [showChatWindow, setShowChatWindow] = useState(false);
-  const [selectedGroup, setSelectedGroup] = useState("");
-  const [isPrivate, setIsPrivate] = useState<any>(undefined);
-  const handleGroupClick = (groupName: string, isprivate: any) => {
-    setSelectedGroup(groupName);
-    setShowChatWindow(true);
-    setIsPrivate(isprivate);
-  };
+
   const accountButtonRef = useRef<HTMLButtonElement | null>(null);
   const handleClickOutside = (event: MouseEvent) => {
     if (
@@ -51,11 +33,6 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
     ) {
       setDropdownVisible(false);
     }
-  };
-
-  const toggleDropdown = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setDropdownVisible(!dropdownVisible);
   };
 
   const handleLogout = (e: React.MouseEvent<HTMLButtonElement>) => {
