@@ -5,8 +5,8 @@ import { RoomDetails } from "./list-group";
 import { getFriendName } from "@/utils/private_chat";
 import ChatItem from "../Component/chat";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import styles from "@/styles/style.module.css"
-import SearchIcon from '@mui/icons-material/Search';
+import styles from "@/styles/style.module.css";
+import SearchIcon from "@mui/icons-material/Search";
 
 export interface Chat {
   roomName: string;
@@ -98,8 +98,58 @@ const Chats: React.FC<allChatsProps> = ({
     };
   }, [username]);
 
+  const mockChatList = [
+    {
+      id: "1",
+      name: "Chat 1",
+      chat: [
+        {
+          roomName: "Room 1",
+          name: "User1",
+          message: "Hello",
+          isPrivate: false,
+          pin: false,
+        },
+      ],
+      isPrivate: false,
+      likedList: [],
+    },
+    {
+      id: "2",
+      name: "Chat 2",
+      chat: [
+        {
+          roomName: "Room 2",
+          name: "User2",
+          message: "How are you?",
+          isPrivate: true,
+          pin: false,
+        },
+      ],
+      isPrivate: true,
+      likedList: ["m3"],
+    },
+    {
+      id: "3",
+      name: "Chat 3",
+      chat: [
+        {
+          roomName: "Room 3",
+          name: "User3",
+          message: "Good morning",
+          isPrivate: false,
+          pin: false,
+        },
+      ],
+      isPrivate: false,
+      likedList: [],
+    },
+  ];
+
   return (
-    <div className={`${styles.font} bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] dark:from-[#F3D0D7] dark:to-[#cd8896] w-1/3  border-borderColor`}>
+    <div
+      className={`${styles.font} bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] dark:from-[#F3D0D7] dark:to-[#cd8896] w-1/3  border-borderColor`}
+    >
       <div className="h-[20%] w-full border-borderColor items-center flex justify-center">
         <form
           className="w-4/5 flex items-center relative"
@@ -117,18 +167,18 @@ const Chats: React.FC<allChatsProps> = ({
         </form>
       </div>
       <div className="h-[80%] overflow-y-auto">
-        {filteredChats
-          .map((chat, index) => (
+        {mockChatList.map((group) =>
+          group.chat.map((chat, index) => (
             <ChatItem
               key={index}
               chat={chat}
               setLikedList={setLikedList}
               onGroupClick={onGroupClick}
               selectedGroup={selectedGroup}
-              isPrivate={isPrivate}
+              isPrivate={group.isPrivate}
             />
           ))
-          .sort(customSort)}
+        )}
       </div>
     </div>
   );

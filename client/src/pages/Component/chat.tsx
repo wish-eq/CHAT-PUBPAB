@@ -43,11 +43,11 @@ const ChatItem: React.FC<GroupItemProps> = ({
 
   return (
     <div
-      className={`h-28 w-full items-center flex cursor-pointer border-b border-borderColor ${
+      className={`h-28 w-full items-center flex cursor-pointer ${
         selectedGroup == (chat.isPrivate ? chat.name : chat.roomName) &&
         isPrivate == chat.isPrivate
-          ? "bg-purple bg-opacity-40"
-          : "hover:bg-purple hover:bg-opacity-5"
+          ? "bg-pink-900 bg-opacity-10"
+          : "hover:bg-pink-500 hover:bg-opacity-5"
       } transition duration-250`}
     >
       <div
@@ -58,17 +58,15 @@ const ChatItem: React.FC<GroupItemProps> = ({
         }}
       >
         <Image
-          src={`/${chat.name.includes("(") ? "G" : "Frame--"}${
-            chat.name ? hashString(chat.name.split(" (")[0] as string) % 9 : 0
-          }.png`}
+          src={`/frame--0.png`}
           alt=""
-          width={75}
+          width={60}
           height={50}
           className="ml-6"
         ></Image>
         <div className="font-roboto ml-6">
           <p
-            className={`text-white text-xl mt-2 ${
+            className={`text-gray-800 text-xl mt-2 ${
               selectedGroup == (chat.isPrivate ? chat.name : chat.roomName)
                 ? "font-bold"
                 : ""
@@ -81,7 +79,7 @@ const ChatItem: React.FC<GroupItemProps> = ({
       <div className={`ml-auto h-28 items-center flex`}>
         {isHeartActive ? (
           <HeartIconSolid
-            className="h-8 w-8 mr-6 text-purple"
+            className="h-8 w-8 mr-6 text-[#E240A2]"
             onClick={handleHeartClick}
           />
         ) : (

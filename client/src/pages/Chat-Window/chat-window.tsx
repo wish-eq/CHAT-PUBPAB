@@ -340,11 +340,11 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
   };
 
   return (
-    <div className="h-full w-2/3 flex flex-col" onClick={hideContextMenu}>
-      <div className="h-20 w-full bg-bgColor border-b border-borderColor flex-shrink-0">
+    <div className="h-full w-2/3 flex flex-col " onClick={hideContextMenu}>
+      <div className="h-20 w-full bg-gradient-to-t from-[#F6F5F2] to-[#F3D0D7] dark:from-[#F3D0D7] dark:to-[#cd8896]  flex-shrink-0">
         <div className="container mx-auto flex justify-center items-center h-full">
           <div>
-            <p className="text-3xl font-roboto text-white font-medium">
+            <p className="text-3xl font-roboto text-white bg-[#c7909b] px-4 py-2 rounded-full font-medium">
               {selectedGroup}
             </p>
           </div>
@@ -352,13 +352,13 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
       </div>
 
       <div
-        className="bg-bgColor h-full w-full flex-grow overflow-y-auto"
+        className="bg-gradient-to-r from-[#F6F5F2] to-[#F3D0D7] dark:from-[#F3D0D7] dark:to-[#cd8896] h-full w-full flex-grow overflow-y-auto"
         ref={messagesEndRef}
       >
         {!hideAnnouncements && (
           <>
             {announcements[0] != null && (
-              <div className="bg-darkBgColor text-fontWhiteDarkBgColor w-[100%] sticky top-0 z-10">
+              <div className="bg-gradient-to-r from-[#F6F5F2] to-[#F3D0D7] dark:from-[#F3D0D7] dark:to-[#cd8896] text-fontWhiteDarkBgColor w-[100%] sticky top-0 z-10">
                 <div className="py-2 px-4 flex items-center justify-between border-b border-borderColor">
                   <div className="flex items-center">
                     <MegaphoneIcon className="h-6 w-6 text-white-500" />
@@ -501,20 +501,20 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
           </div>
         </div>
       </div>
-      <div className="bg-bgColor h-20 w-full p-5 flex-shrink-0 flex items-center">
+      <div className="bg-gradient-to-t from-[#F6F5F2] to-[#F3D0D7] dark:from-[#F3D0D7] dark:to-[#cd8896] h-20 w-full p-5 flex-shrink-0 flex items-center">
         <form
           onSubmit={handleSendMessage}
           className="relative w-full flex-grow mr-4"
         >
           <input
-            className="p-2 w-full rounded-xl bg-borderColor text-fontWhiteDarkBgColor hover:border-indigo-600 h-14"
+            className="p-2 pl-4 w-full rounded-xl bg-[#F6F5F2] dark:bg-[#F3D0D7] text-gray-800 hover:border-indigo-600 h-14 focus:outline-none"
             type="text"
             placeholder="Message..."
             value={message}
             onChange={(e) => setmessage(e.target.value)}
           />
           <button
-            className="p-2 rounded-xl bg-purple text-white hover:bg-purple-500 flex items-center absolute right-2 top-2 h-10"
+            className="p-2 rounded-xl text-white ml-2 bg-[#E240A2] hover:bg-opacity-60 transition duration-300 flex items-center absolute right-2 top-2 h-10"
             type="submit"
           >
             <span>Send</span>

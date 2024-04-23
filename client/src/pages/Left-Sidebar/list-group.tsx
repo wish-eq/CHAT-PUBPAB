@@ -4,8 +4,8 @@ import { Message } from "../Chat-Window/chat-window";
 import { useRouter } from "next/router";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import GroupItem from "../Component/group";
-import styles from "@/styles/style.module.css"
-import SearchIcon from '@mui/icons-material/Search';
+import styles from "@/styles/style.module.css";
+import SearchIcon from "@mui/icons-material/Search";
 
 interface Group {
   groupName: string;
@@ -87,12 +87,22 @@ const Groups: React.FC<ChatGroupsProps> = ({
     groupName.value = "";
   };
 
+  const mock = [
+    { groupName: "Group 1", people: 5 },
+    { groupName: "Group 2", people: 3 },
+    { groupName: "Group 3", people: 4 },
+    { groupName: "Group 4", people: 2 },
+    { groupName: "Group 5", people: 6 },
+  ];
+
   const filteredGroups = groupList.filter((group) =>
     group.groupName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
-    <div className={`${styles.font} bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] dark:from-[#F3D0D7] dark:to-[#cd8896] w-1/3  border-borderColor`}>
+    <div
+      className={`${styles.font} bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] dark:from-[#F3D0D7] dark:to-[#cd8896] w-1/3  border-borderColor`}
+    >
       <div className="h-[20%] w-full mt-4 border-borderColor items-center flex justify-center flex-col">
         <form
           className="w-4/5 flex items-center relative"
@@ -129,7 +139,7 @@ const Groups: React.FC<ChatGroupsProps> = ({
         </form>
       </div>
       <div className="h-[80%] overflow-y-auto">
-        {filteredGroups.map((group, index) => (
+        {mock.map((group, index) => (
           <GroupItem
             onGroupClick={onGroupClick}
             key={index}

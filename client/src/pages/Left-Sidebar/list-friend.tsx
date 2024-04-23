@@ -4,8 +4,8 @@ import { socket } from "../login";
 import { useRouter } from "next/router";
 import hashString from "@/utils/hashString";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import styles from "@/styles/style.module.css"
-import SearchIcon from '@mui/icons-material/Search';
+import styles from "@/styles/style.module.css";
+import SearchIcon from "@mui/icons-material/Search";
 
 interface ChatFriendsProps {
   onGroupClick: (GroupName: string, isprivate: any) => void;
@@ -55,8 +55,12 @@ const Friends: React.FC<ChatFriendsProps> = ({
     };
   }, [username]);
 
+  const mock = ["John", "Jane", "Doe", "Smith", "Alice", "Bob"];
+
   return (
-    <div className={`${styles.font} bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] dark:from-[#F3D0D7] dark:to-[#cd8896] w-1/3 border-borderColor`}>
+    <div
+      className={`${styles.font} bg-gradient-to-b from-[#F3D0D7] to-[#f8e7ea] dark:from-[#F3D0D7] dark:to-[#cd8896] w-1/3 border-borderColor`}
+    >
       <div className="h-[20%] w-full  border-borderColor items-center flex justify-center">
         <form
           className="w-4/5 flex items-center relative"
@@ -74,13 +78,13 @@ const Friends: React.FC<ChatFriendsProps> = ({
         </form>
       </div>
       <div className="h-[80%] overflow-y-auto">
-        {filteredFriends.map((friend, index) => {
+        {mock.map((friend, index) => {
           return (
             <div
-              className={`h-28 w-full border-b border-borderColor items-center flex cursor-pointer ${
+              className={`h-28 w-full items-center flex cursor-pointer ${
                 friend == selectedFriend && isPrivate
-                  ? "bg-purple bg-opacity-40"
-                  : "hover:bg-purple hover:bg-opacity-5"
+                  ? "bg-pink-900 bg-opacity-10"
+                  : "hover:bg-pink-500 hover:bg-opacity-5"
               } transition duration-250`}
               key={index}
               onClick={() => {
@@ -88,15 +92,17 @@ const Friends: React.FC<ChatFriendsProps> = ({
               }}
             >
               <Image
-                src={`/Frame--0.png`}
+                src={`/Frame_${
+                  friend ? hashString(friend as string) % 9 : 0
+                }.png`}
                 alt=""
-                width={75}
+                width={60}
                 height={50}
                 className="ml-6"
               ></Image>
               <div className="font-roboto ml-6">
                 <p
-                  className={`text-white text-xl ${
+                  className={`text-gray-800 text-xl ${
                     friend === selectedFriend && isPrivate ? "font-bold" : ""
                   }`}
                 >
