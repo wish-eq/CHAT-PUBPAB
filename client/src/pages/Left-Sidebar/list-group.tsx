@@ -30,13 +30,6 @@ const Groups: React.FC<ChatGroupsProps> = ({
   selectedGroup,
   isPrivate,
 }) => {
-  const groups = [
-    { groupName: "Group 1", people: 5 },
-    { groupName: "Group 2", people: 3 },
-    { groupName: "Group 3", people: 4 },
-    { groupName: "Group 4", people: 2 },
-    { groupName: "Group 5", people: 6 },
-  ];
 
   const [groupList, setGroupList] = useState<Group[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -51,7 +44,7 @@ const Groups: React.FC<ChatGroupsProps> = ({
     setSearchTerm(searchQuery.value);
   };
 
-  const filteredGroups = groups.filter((group) =>
+  const filteredGroups = groupList.filter((group) =>
     group.groupName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -90,10 +83,11 @@ const Groups: React.FC<ChatGroupsProps> = ({
       return;
     }
     if (groupName) {
-      socket.emit("join-room", {
+      const response = socket.emit("join-room", {
         username: username,
         room: validateGroupName(groupName.value),
       });
+      console.log(response);
     }
     socket.emit("get-all-rooms");
     groupName.value = "";

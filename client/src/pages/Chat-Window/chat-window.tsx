@@ -361,7 +361,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
             {announcements[0] != null && (
               <div className="bg-gradient-to-r from-[#F6F5F2] to-[#F3D0D7] dark:from-[#F3D0D7] dark:to-[#cd8896] text-fontWhiteDarkBgColor w-[100%] sticky top-0 z-10">
                 <div className="py-2 px-4 flex items-center justify-between border-b border-borderColor">
-                  <div className="flex items-center">
+                  <div className="flex items-center text-black">
                     <MegaphoneIcon className="h-6 w-6 text-white-500" />
                     <p className="ml-2">{announcements[0]}</p>
                   </div>
@@ -377,7 +377,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                     {announcements.slice(1).map((announce, index) => (
                       <div
                         key={index}
-                        className="flex items-center bg-fontBgColor bg-opacity-20 text-fontWhiteDarkBgColor py-2 px-4 border-b border-fontWhiteDarkBgColor"
+                        className="flex items-center bg-fontBgColor bg-opacity-20 text-black py-2 px-4 border-b border-fontWhiteDarkBgColor"
                       >
                         <MegaphoneIcon className="h-6 w-6 text-white-500" />
                         <p className="text-sm ml-2">{announce}</p>
@@ -414,7 +414,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
               return (
                 <div
                   key={index}
-                  className={`flex items-start mb-2 ${
+                  className={`flex items-start mb-7 ${
                     isCurrentUser ? "flex-row-reverse" : "flex-row -ml-4"
                   }`}
                 >
@@ -438,13 +438,13 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                           <span className="text-fontBgColor text-sm ml-2">
                             {formatTime(m.time)}
                           </span>
-                          <span className="text-fontWhiteDarkBgColor text-sm ml-2">
+                          <span className="text-green-600 text-sm ml-2">
                             {m.author}
                           </span>
                         </>
                       ) : (
                         <>
-                          <span className="text-fontWhiteDarkBgColor text-sm">
+                          <span className="text-red-600 text-sm">
                             {m.author}
                           </span>
                           <span className="text-fontBgColor text-sm ml-2">
@@ -456,8 +456,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                     <div
                       className={`px-2 py-1 w-fit h-fit ${
                         isCurrentUser
-                          ? "ml-auto bg-purple text-fontWhiteDarkBgColor rounded-lg rounded-tr-none rounded-br-lg"
-                          : "bg-borderColor text-fontWhiteDarkBgColor rounded-lg rounded-bl-lg rounded-tl-none"
+                          ? "ml-auto bg-white text-black rounded-lg rounded-tr-none rounded-br-lg"
+                          : "bg-white text-black rounded-lg rounded-bl-lg rounded-tl-none"
                       }`}
                       onContextMenu={(e) => handleContextMenu(e, index)}
                     >
@@ -477,7 +477,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                 {contextMenu.isCurrentUser && (
                   <button
                     onClick={handleUnsendMessage}
-                    className="cursor-pointer text-sm p-1 block w-full text-left hover:text-purple transition duration-250"
+                    className="cursor-pointer text-sm p-1 block w-full text-left transition duration-250"
                   >
                     unsend
                   </button>
@@ -493,7 +493,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                   }}
                   className={`cursor-pointer text-sm p-1 block w-full text-left ${
                     contextMenu.isCurrentUser ? "mt-1" : ""
-                  } hover:text-purple transition duration-250`}
+                  } transition duration-250`}
                 >
                   announce
                 </button>

@@ -26,82 +26,82 @@ const Chats: React.FC<allChatsProps> = ({
   selectedGroup,
   isPrivate,
 }) => {
-  const mockChatList = [
-    {
-      id: "1",
-      name: "Chat 1",
-      chat: [
-        {
-          roomName: "Room 1",
-          name: "User1",
-          message: "Hello",
-          isPrivate: false,
-          pin: false,
-        },
-      ],
-      isPrivate: true,
-      likedList: [],
-    },
-    {
-      id: "2",
-      name: "Chat 2",
-      chat: [
-        {
-          roomName: "Room 2",
-          name: "User2",
-          message: "How are you?",
-          isPrivate: true,
-          pin: false,
-        },
-      ],
-      isPrivate: true,
-      likedList: ["m3"],
-    },
-    {
-      id: "3",
-      name: "Chat 3",
-      chat: [
-        {
-          roomName: "Room 3",
-          name: "User3",
-          message: "Good morning",
-          isPrivate: false,
-          pin: false,
-        },
-      ],
-      isPrivate: true,
-      likedList: [],
-    },{
-      id: "4",
-      name: "Chat 4",
-      chat: [
-        {
-          roomName: "Room 4",
-          name: "User4",
-          message: "Good morning",
-          isPrivate: false,
-          pin: false,
-        },
-      ],
-      isPrivate: true,
-      likedList: [],
-    },
-    {
-      id: "5",
-      name: "Chat 5",
-      chat: [
-        {
-          roomName: "Room 5",
-          name: "User5",
-          message: "Good morning",
-          isPrivate: false,
-          pin: false,
-        },
-      ],
-      isPrivate: true,
-      likedList: [],
-    }
-  ];
+  // const mockChatList = [
+  //   {
+  //     id: "1",
+  //     name: "Chat 1",
+  //     chat: [
+  //       {
+  //         roomName: "Room 1",
+  //         name: "User1",
+  //         message: "Hello",
+  //         isPrivate: false,
+  //         pin: false,
+  //       },
+  //     ],
+  //     isPrivate: true,
+  //     likedList: [],
+  //   },
+  //   {
+  //     id: "2",
+  //     name: "Chat 2",
+  //     chat: [
+  //       {
+  //         roomName: "Room 2",
+  //         name: "User2",
+  //         message: "How are you?",
+  //         isPrivate: true,
+  //         pin: false,
+  //       },
+  //     ],
+  //     isPrivate: true,
+  //     likedList: ["m3"],
+  //   },
+  //   {
+  //     id: "3",
+  //     name: "Chat 3",
+  //     chat: [
+  //       {
+  //         roomName: "Room 3",
+  //         name: "User3",
+  //         message: "Good morning",
+  //         isPrivate: false,
+  //         pin: false,
+  //       },
+  //     ],
+  //     isPrivate: true,
+  //     likedList: [],
+  //   },{
+  //     id: "4",
+  //     name: "Chat 4",
+  //     chat: [
+  //       {
+  //         roomName: "Room 4",
+  //         name: "User4",
+  //         message: "Good morning",
+  //         isPrivate: false,
+  //         pin: false,
+  //       },
+  //     ],
+  //     isPrivate: true,
+  //     likedList: [],
+  //   },
+  //   {
+  //     id: "5",
+  //     name: "Chat 5",
+  //     chat: [
+  //       {
+  //         roomName: "Room 5",
+  //         name: "User5",
+  //         message: "Good morning",
+  //         isPrivate: false,
+  //         pin: false,
+  //       },
+  //     ],
+  //     isPrivate: true,
+  //     likedList: [],
+  //   }
+  // ];
 
   const [likedList, setLikedList] = useState<String[]>([]);
   const [chatList, setChatList] = useState<Chat[]>([]);
@@ -118,7 +118,7 @@ const Chats: React.FC<allChatsProps> = ({
     setSearchTerm(searchQuery.value);
   };
 
-  const filteredMockChatList = mockChatList.filter((chat) =>
+  const filteredChat = chatList.filter((chat) =>
     chat.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -198,7 +198,7 @@ useEffect(() => {
         </form>
       </div>
       <div className="h-[80%] overflow-y-auto">
-      {filteredMockChatList
+      {filteredChat
           .map((chat, index) => (
             <ChatItem
               key={index}

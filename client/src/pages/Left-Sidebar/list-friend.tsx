@@ -23,7 +23,7 @@ const Friends: React.FC<ChatFriendsProps> = ({
   const router = useRouter();
   const { username } = router.query;
 
-  const mockFriendList = ["John", "Jane", "Doe", "Smith", "Alice", "Bob"];
+  // const mockFriendList = ["John", "Jane", "Doe", "Smith", "Alice", "Bob"];
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const searchQuery = e.currentTarget.elements.namedItem(
@@ -32,7 +32,7 @@ const Friends: React.FC<ChatFriendsProps> = ({
     setSearchTerm(searchQuery.value);
   };
 
-  const filteredMockFriendList = mockFriendList.filter((name) =>
+  const filteredFriendList = friendList.filter((name) =>
     name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -90,7 +90,7 @@ const Friends: React.FC<ChatFriendsProps> = ({
         </form>
       </div>
       <div className="h-[80%] overflow-y-auto">
-        {filteredMockFriendList.map((friend, index) => {
+        {filteredFriendList.map((friend, index) => {
           return (
             <div
               className={`${styles.font} h-28 w-full items-center flex cursor-pointer ${
