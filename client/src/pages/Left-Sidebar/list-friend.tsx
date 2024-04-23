@@ -80,7 +80,9 @@ const Friends: React.FC<ChatFriendsProps> = ({
         {filteredFriendList.map((friend, index) => {
           return (
             <div
-              className={`${styles.font} h-28 w-full items-center flex cursor-pointer ${
+              className={`${
+                styles.font
+              } h-28 w-full items-center flex cursor-pointer ${
                 friend == selectedFriend && isPrivate
                   ? "bg-pink-900 bg-opacity-10"
                   : "hover:bg-pink-500 hover:bg-opacity-5"
@@ -91,9 +93,7 @@ const Friends: React.FC<ChatFriendsProps> = ({
               }}
             >
               <Image
-                src={`/Frame_${
-                  friend ? hashString(friend as string) % 9 : 0
-                }.png`}
+                src={`/Frame--0.png`}
                 alt=""
                 width={60}
                 height={50}
