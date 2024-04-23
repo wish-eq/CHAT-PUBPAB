@@ -2,7 +2,6 @@ import React, { FormEvent, useEffect, useState } from "react";
 import { socket } from "../login";
 import { Message } from "../Chat-Window/chat-window";
 import { useRouter } from "next/router";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import GroupItem from "../Component/group";
 import styles from "@/styles/style.module.css";
 import SearchIcon from "@mui/icons-material/Search";

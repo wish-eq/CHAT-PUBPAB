@@ -3,7 +3,6 @@ import React, { FormEvent, useEffect, useState } from "react";
 import { socket } from "../login";
 import { useRouter } from "next/router";
 import hashString from "@/utils/hashString";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import styles from "@/styles/style.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 
