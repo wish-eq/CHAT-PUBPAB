@@ -3,13 +3,13 @@ import Image from "next/image";
 import styles from "@/styles/style.module.css";
 
 interface Group {
-  groupName: string;
+  groupName: any;
   people: number;
 }
 interface GroupItemProps {
-  onGroupClick: (groupName: string, isPrivate: any) => void;
+  onGroupClick: (groupName: any, isPrivate: any) => void;
   group: Group;
-  selectedGroup: string;
+  selectedGroup: any;
   isPrivate: any;
 }
 

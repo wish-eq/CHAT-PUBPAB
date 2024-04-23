@@ -7,8 +7,8 @@ import styles from "@/styles/style.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 
 interface ChatFriendsProps {
-  onGroupClick: (GroupName: string, isprivate: any) => void;
-  selectedFriend: string;
+  onGroupClick: (GroupName: any, isprivate: any) => void;
+  selectedFriend: any;
   isPrivate: any;
 }
 

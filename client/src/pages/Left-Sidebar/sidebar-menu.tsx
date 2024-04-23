@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import ChatIcon from "@mui/icons-material/Chat";
 import styles from "@/styles/style.module.css";
 import ThemeButton from "../theme_button";
-import ReviewModal from "../Component/ReviewModal";
+// import ReviewModal from "../Component/ReviewModal";
 
 const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
   const [room, setRoom] = useState("all-chats");
@@ -66,7 +66,7 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
       className={`${styles.font} relative w-64 space-y-5 bg-gradient-to-r  border-gray-500 from-[#F3D0D7] to-[#F6F5F2]
      dark:from-[#F3D0D7] dark:to-[#cd8896] flex text-gray-800 flex-col justify-start items-center font-roboto`}
     >
-      <ReviewModal
+      {/* <ReviewModal
         isOpen={isWriteReviewModal}
         closeModal={closeWriteReviewModal}
         title="Choose your avatar !"
@@ -151,7 +151,7 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
             />
           </div>
         </div>
-      </ReviewModal>
+      </ReviewModal> */}
       <div className="absolute top-4 right-3">
         <ThemeButton />
       </div>
