@@ -23,10 +23,13 @@ import ChatIcon from "@mui/icons-material/Chat";
 import styles from "@/styles/style.module.css";
 import hashString from "@/utils/hashString";
 import ThemeButton from "../theme_button";
+import ReviewModal from "../Component/ReviewModal";
 
 const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
   const [room, setRoom] = useState("all-chats");
   ///
+
+  const [profileURL, setProfileURL] = useState("");
 
   const router = useRouter();
   const { username } = router.query;
@@ -68,11 +71,112 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [dropdownRef]);
+
+  const [isWriteReviewModal, setIsWriteReviewModal] = useState(false);
+
+  const closeWriteReviewModal = () => {
+    setIsWriteReviewModal(false);
+  };
+  const openWriteReviewModal = () => {
+    setIsWriteReviewModal(true);
+  };
+
+  const handleSetProfileURL = (newURL: string) => {
+    setProfileURL(newURL);
+    closeWriteReviewModal();
+  };
+
   return (
     <div
       className={`${styles.font} relative w-64 space-y-5 bg-gradient-to-r  border-gray-500 from-[#F3D0D7] to-[#F6F5F2]
      dark:from-[#F3D0D7] dark:to-[#cd8896] flex text-gray-800 flex-col justify-start items-center font-roboto`}
     >
+      <ReviewModal
+        isOpen={isWriteReviewModal}
+        closeModal={closeWriteReviewModal}
+        title="Choose your avatar !"
+      >
+        <div className="flex flex-col justify-center items-center p-8 space-y-8">
+          <div className="flex flex-row justify-center items-center space-x-2">
+            <Image
+              src={`/Frame--0.png`}
+              alt=""
+              width={125}
+              height={125}
+              className={" hover:bg-pink-100 rounded-3xl p-4 "}
+              onClick={() => handleSetProfileURL("/Frame--0.png")}
+            />
+            <Image
+              src={`/barby-2.png`}
+              alt=""
+              width={125}
+              height={125}
+              className={" hover:bg-pink-100 rounded-3xl p-4 "}
+              onClick={() => handleSetProfileURL("/barby-2.png")}
+            />
+            <Image
+              src={`/barby-3.png`}
+              alt=""
+              width={125}
+              height={125}
+              className={" hover:bg-pink-100 rounded-3xl p-4 "}
+              onClick={() => handleSetProfileURL("/barby-3.png")}
+            />
+          </div>
+          <div className="flex flex-row justify-center items-center space-x-2">
+            <Image
+              src={`/barby-7.png`}
+              alt=""
+              width={125}
+              height={125}
+              className={" hover:bg-pink-100 rounded-3xl p-4 "}
+              onClick={() => handleSetProfileURL("/barby-7.png")}
+            />
+            <Image
+              src={`/barby-8.png`}
+              alt=""
+              width={125}
+              height={125}
+              className={" hover:bg-pink-100 rounded-3xl p-4 "}
+              onClick={() => handleSetProfileURL("/barby-8.png")}
+            />
+            <Image
+              src={`/barby-9.png`}
+              alt=""
+              width={125}
+              height={125}
+              className={" hover:bg-pink-100 rounded-3xl p-4 "}
+              onClick={() => handleSetProfileURL("/barby-9.png")}
+            />
+          </div>
+          <div className="flex flex-row justify-center items-center space-x-2">
+            <Image
+              src={`/barby-4.png`}
+              alt=""
+              width={125}
+              height={125}
+              className={" hover:bg-pink-100 rounded-3xl p-4 "}
+              onClick={() => handleSetProfileURL("/barby-4.png")}
+            />
+            <Image
+              src={`/barby-5.png`}
+              alt=""
+              width={125}
+              height={125}
+              className={" hover:bg-pink-100 rounded-3xl p-4 "}
+              onClick={() => handleSetProfileURL("/barby-5.png")}
+            />
+            <Image
+              src={`/barby-6.png`}
+              alt=""
+              width={125}
+              height={125}
+              className={" hover:bg-pink-100 rounded-3xl p-4 "}
+              onClick={() => handleSetProfileURL("/barby-6.png")}
+            />
+          </div>
+        </div>
+      </ReviewModal>
       <div className="absolute top-4 right-3">
         <ThemeButton />
       </div>
@@ -81,8 +185,16 @@ const SidebarMenu = ({ setPage, currentPage }: SidebarMenuProps) => {
         <Image src="/barby-logo.png" alt="" width={150} height={75}></Image>
       </div>
 
-      <div className="">
-        <Image src={`/Frame--0.png`} alt="" width={60} height={60}></Image>
+      <div
+        className="hover:bg-pink-100 px-4 py-2 rounded-lg cursor-pointer"
+        onClick={openWriteReviewModal}
+      >
+        <Image
+          src={profileURL || "/Frame--0.png"}
+          alt=""
+          width={70}
+          height={60}
+        />
         <p className="text-xl text-center text-gray-800 mt-2">{username}</p>
       </div>
 
