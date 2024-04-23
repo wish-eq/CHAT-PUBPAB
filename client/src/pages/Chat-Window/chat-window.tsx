@@ -369,7 +369,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                     className="focus:outline-none"
                     onClick={toggleAnnouncements}
                   >
-                    <ChevronDownIcon className="h-4 w-4 text-fontWhiteDarkBgColor" />
+                    <ChevronDownIcon className="h-4 w-4 text-black" />
                   </button>
                 </div>
                 {!hideAnnouncements && showAnnouncements && (
@@ -396,7 +396,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
                           handleHideAnnouncements();
                         }}
                       >
-                        <p className="text-sm hover:text-purple transition duration-250">
+                        <p className="text-sm transition duration-250">
                           Do not show again!
                         </p>
                       </button>
