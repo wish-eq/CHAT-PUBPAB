@@ -507,7 +507,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
           className="relative w-full flex-grow mr-4"
         >
           <input
-            className="p-2 pl-4 w-full rounded-xl bg-[#F6F5F2] dark:bg-[#F3D0D7] text-gray-800 hover:border-indigo-600 h-14 focus:outline-none"
+            className="p-2 pl-4 w-full rounded-xl bg-[#F6F5F2] dark:bg-[#F3D0D7] dark:border-[#cd8896] border-[2px] text-gray-800 hover:border-indigo-600 h-14 focus:outline-none"
             type="text"
             placeholder="Message..."
             value={message}
