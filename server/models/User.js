@@ -6,6 +6,10 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    socket_id: {
+        type: String,
+        required: true
+    },
     rooms: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Room'

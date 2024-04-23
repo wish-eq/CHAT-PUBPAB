@@ -2,12 +2,57 @@ const User = require('../models/User');
 const Room = require('../models/Room');
 const Message = require('../models/Message');
 const mongoose = require('mongoose');
-const ObjectId = mongoose.Types.ObjectId;
+const ObjectId = mongoose.Types.ObjectId; // Correct way to import ObjectId
 
-const addUser = async (userId, username) => {
-  const user = await User.findOneAndUpdate({ username: username }, { $setOnInsert: { id: userId, rooms: [] } }, { upsert: true, new: true });
-  console.log(user);
+const login = async (userId, username) => {
+  console.log("Attempting to log in with userId:", userId);  // Debugging line
+  try {
+      const user = await User.findOneAndUpdate(
+          { username: username },
+          { $setOnInsert: { socket_id: userId, rooms: [] } },
+          { upsert: true, new: true }
+      );
+      console.log("User logged in or created:", user);
+  } catch (error) {
+      console.error('Error adding user:', error);
+  }
 };
+
+//Get token from model, create cookie and send response
+const sendTokenResponse = (user, statusCode, res) => {
+  const token = user.getSignedJwtToken()
+  const options = {
+      expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+      secure: false
+  };
+  if (process.env.NODE_ENV === 'production') {
+      options.secure = true;
+  }
+
+  res.status(statusCode).cookie('token', token, options).json({
+      success: true,
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      tel: user.tel,
+      token
+  })
+}
+
+const logout = async (req, res, next) => {
+  res.cookie('token', 'none', {
+      expires: new Date(Date.now() + 10 * 1000),
+      httpOnly: true
+  });
+
+  res.status(200).json({
+      success: true,
+      msg: "Logout successful",
+      data: {}
+  });
+}
+
 
 const joinRoom = async (userId, username, roomName, isPrivate = false) => {
   const room = await Room.findOneAndUpdate({ room: roomName }, { $setOnInsert: { userCount: 0, latestMessage: '', private: isPrivate } }, { upsert: true, new: true });
@@ -119,7 +164,8 @@ const getMessageInRoom = async (roomName) => {
 };
 
 module.exports = {
-  addUser,
+  login,
+  logout,
   joinRoom,
   leaveRoom,
   getCurrentUser,

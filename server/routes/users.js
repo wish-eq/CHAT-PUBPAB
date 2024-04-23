@@ -2,22 +2,24 @@
 const express = require('express');
 const router = express.Router();
 const {
-  addUser,
+  login,
   joinRoom,
   leaveRoom,
   getAllUsers,
   getUserRooms,
-  pinChat
+  pinChat,
+  logout
 } = require('../controllers/users');
 
 // Assuming that addUser, joinRoom, etc., are already defined in your controller
 // You might need to adjust based on actual implementations or add middleware
 
-router.post('/addUser', addUser);
+router.post('/login', login);
+router.get('/logout', logout)
 router.post('/joinRoom', joinRoom);
 router.post('/leaveRoom', leaveRoom);
-router.get('/allUsers', getAllUsers);
-router.get('/userRooms/:username', getUserRooms);
+router.get('/', getAllUsers);
+router.get('/rooms/:username', getUserRooms);
 router.post('/pinChat', pinChat);
 
 module.exports = router;
