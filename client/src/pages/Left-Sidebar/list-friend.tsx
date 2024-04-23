@@ -23,7 +23,6 @@ const Friends: React.FC<ChatFriendsProps> = ({
   const router = useRouter();
   const { username } = router.query;
 
-  // const mockFriendList = ["John", "Jane", "Doe", "Smith", "Alice", "Bob"];
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const searchQuery = e.currentTarget.elements.namedItem(
@@ -35,18 +34,6 @@ const Friends: React.FC<ChatFriendsProps> = ({
   const filteredFriendList = friendList.filter((name) =>
     name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  // const handleSearch = (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   const searchQuery = e.currentTarget.elements.namedItem(
-  //     "search_user"
-  //   ) as HTMLInputElement;
-  //   setSearchTerm(searchQuery.value);
-  // };
-
-  // const filteredMockFriendList = mockFriendList.filter((chat) =>
-  //   chat.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
 
   useEffect(() => {
     socket.emit("get-all-users");
