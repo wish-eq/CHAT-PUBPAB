@@ -40,7 +40,7 @@ app.use(hpp());
 app.use(cors());
 
 // Routes
-app.use('/api/users', userRoutes);  // Use the user routes
+app.use('/api/v1/users', userRoutes);  // Use the user routes
 
 const server = http.createServer(app);
 const io = Server(server);
