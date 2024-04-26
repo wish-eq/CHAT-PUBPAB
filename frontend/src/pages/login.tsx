@@ -5,7 +5,9 @@ import { io } from "socket.io-client";
 import styles from "@/styles/style.module.css";
 import ThemeButton from "./theme_button";
 
-export const socket = io("172.20.10.6:5001", { transports: ["websocket"] });
+export const socket = io("http://localhost:5000", {
+  transports: ["websocket"],
+});
 
 const validateUsername = (username: string) => {
   // Check if the input contains only alphanumeric characters and does not exceed 10 characters
